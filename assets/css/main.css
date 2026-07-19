@@ -6697,7 +6697,6 @@ input, select, textarea {
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		-webkit-overflow-scrolling: touch;
 		position: relative;
 		background-color: transparent;
 	}
@@ -6859,6 +6858,8 @@ input, select, textarea {
 			overflow-y: hidden;
 			position: relative;
 			width: 100%;
+			-webkit-overflow-scrolling: touch; 
+			touch-action: pan-x;  
 		}
 
 		.gallery.style2 article {

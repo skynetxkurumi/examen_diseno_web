@@ -28,7 +28,7 @@
 		});
 
 	// Browser fixes.
-
+	
 		// IE: Flexbox min-height bug.
 			if (browser.name == 'ie')
 				(function() {
@@ -151,9 +151,11 @@
 				.wrapInner('<div class="inner"></div>');
 
 	// Gallery.
+		var esTactil = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+		window.esTactil = esTactil;
 		$('.gallery')
 			.wrapInner('<div class="inner"></div>')
-			.prepend(browser.mobile ? '' : '<div class="forward"></div><div class="backward"></div>')
+			.prepend(esTactil ? ''  : '<div class="forward"></div><div class="backward"></div>')
 			.scrollex({
 				top:		'30vh',
 				bottom:		'30vh',
@@ -178,8 +180,8 @@
 			})
 			.children('.inner')
 				//.css('overflow', 'hidden')
-				.css('overflow-y', browser.mobile ? 'visible' : 'hidden')
-				.css('overflow-x', browser.mobile ? 'scroll' : 'hidden')
+				.css('overflow-y', esTactil ? 'visible' : 'hidden')
+				.css('overflow-x', esTactil ? 'scroll' : 'hidden')
 				.scrollLeft(0);
 
 		// Style #1.
@@ -308,6 +310,10 @@
 
 						}, 125);
 
+				})
+				.on('touchend', '.modal', function(event) { 
+				event.preventDefault();
+				$(this).trigger('click');
 				})
 				.on('keypress', '.modal', function(event) {
 
